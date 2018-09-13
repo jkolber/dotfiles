@@ -106,3 +106,5 @@ alias msync='script/msync.rb -d 2018_04_12_int_test_day3 &> "msync_$(date +"%Y-%
 export FZF_DEFAULT_COMMAND='fd --type f'
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+# brew install zsh-autosuggestions
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
