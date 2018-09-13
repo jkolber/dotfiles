@@ -26,6 +26,7 @@ set mouse=a
 set number
 set ruler
 " set scrolloff=15
+set scroll=5
 set shiftround
 set shiftwidth=2
 set shortmess+=A
@@ -37,6 +38,7 @@ set softtabstop=2
 set smartcase
 set textwidth=100
 set tags=./tags
+set ttimeoutlen=100
 execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -45,16 +47,18 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'qpkorr/vim-bufkill'
-Plug 'slim-template/vim-slim.git'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'vim-ruby/vim-ruby'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 nmap ; :Buffers<CR>
 nmap <Leader>t :Files<CR>
 nmap <Leader>r :Tags<CR>
+command NT NERDTree
 " ALE
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
