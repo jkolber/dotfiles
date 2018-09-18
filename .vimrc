@@ -1,6 +1,6 @@
-set nocompatible
 filetype indent plugin on
 syntax enable
+set nocompatible
 set autoindent
 set autoread
 set autowrite
@@ -25,18 +25,18 @@ set matchtime=2
 set modelines=5
 set mouse=a
 set noshowmode
+set notitle
 set number
 set rnu
 set ruler
 " set scrolloff=15
-set scroll=5
+" set scroll=5
 set shiftround
 set shiftwidth=2
 set shortmess+=A
 set showbreak=
-set showmatch
-set notitle
 set showcmd
+set showmatch
 set softtabstop=2
 set smartcase
 set textwidth=100
@@ -80,63 +80,63 @@ let g:gitgutter_sign_removed = '∙'
 let g:gitgutter_sign_modified_removed = '∙'
 
 " Lightline
-let g:lightline = {
-\ 'colorscheme': 'wombat',
-\ 'active': {
-\   'left': [['mode', 'paste'], ['filename', 'modified']],
-\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
-\ },
-\ 'component_expand': {
-\   'linter_warnings': 'LightlineLinterWarnings',
-\   'linter_errors': 'LightlineLinterErrors',
-\   'linter_ok': 'LightlineLinterOK'
-\ },
-\ 'component_type': {
-\   'readonly': 'error',
-\   'linter_warnings': 'warning',
-\   'linter_errors': 'error'
-\ },
-\ }
+" let g:lightline = {
+" \ 'colorscheme': 'wombat',
+" \ 'active': {
+" \   'left': [['mode', 'paste'], ['filename', 'modified']],
+" \   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+" \ },
+" \ 'component_expand': {
+" \   'linter_warnings': 'LightlineLinterWarnings',
+" \   'linter_errors': 'LightlineLinterErrors',
+" \   'linter_ok': 'LightlineLinterOK'
+" \ },
+" \ 'component_type': {
+" \   'readonly': 'error',
+" \   'linter_warnings': 'warning',
+" \   'linter_errors': 'error'
+" \ },
+" \ }
 
-function! LightlineLinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
-endfunction
+" function! LightlineLinterWarnings() abort
+"   let l:counts = ale#statusline#Count(bufnr(''))
+"   let l:all_errors = l:counts.error + l:counts.style_error
+"   let l:all_non_errors = l:counts.total - l:all_errors
+"   return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+" endfunction
+"
+" function! LightlineLinterErrors() abort
+"   let l:counts = ale#statusline#Count(bufnr(''))
+"   let l:all_errors = l:counts.error + l:counts.style_error
+"   let l:all_non_errors = l:counts.total - l:all_errors
+"   return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+" endfunction
+"
+" function! LightlineLinterOK() abort
+"   let l:counts = ale#statusline#Count(bufnr(''))
+"   let l:all_errors = l:counts.error + l:counts.style_error
+"   let l:all_non_errors = l:counts.total - l:all_errors
+"   return l:counts.total == 0 ? '✓ ' : ''
+" endfunction
+"
+" " Update and show lightline but only if it's visible (e.g., not in Goyo)
+" function! s:MaybeUpdateLightline()
+"   if exists('#lightline')
+"     call lightline#update()
+"   end
+" endfunction
+"
+" " Update the lightline scheme from the colorscheme. Hopefully.
+" function! s:UpdateLightlineColorScheme()
+"   let g:lightline.colorscheme = g:colors_name
+"   call lightline#init()
+" endfunction
 
-function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
-endfunction
-
-function! LightlineLinterOK() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '✓ ' : ''
-endfunction
-
-" Update and show lightline but only if it's visible (e.g., not in Goyo)
-function! s:MaybeUpdateLightline()
-  if exists('#lightline')
-    call lightline#update()
-  end
-endfunction
-
-" Update the lightline scheme from the colorscheme. Hopefully.
-function! s:UpdateLightlineColorScheme()
-  let g:lightline.colorscheme = g:colors_name
-  call lightline#init()
-endfunction
-
-augroup _lightline
-  autocmd!
-  autocmd User ALELint call s:MaybeUpdateLightline()
-  autocmd ColorScheme * call s:UpdateLightlineColorScheme()
-augroup END
+" augroup _lightline
+"   autocmd!
+"   autocmd User ALELint call s:MaybeUpdateLightline()
+"   autocmd ColorScheme * call s:UpdateLightlineColorScheme()
+" augroup END
 
 " Make sure colored syntax mode is on, and make it Just Work with newer 256
 " color terminals like iTerm2.
