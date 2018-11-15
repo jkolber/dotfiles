@@ -100,11 +100,13 @@ source $ZSH/oh-my-zsh.sh
 DEFAULT_USER='joshuakolber'
 source ~/scripts/docker-helper.bash
 eval $(thefuck --alias)
-alias tags='ctags -R --exclude="*.js" .  $(bundle list --paths)'
-alias supergrep='grep -rnw . --exclude-dir="./log" --exclude-dir="./node_modules" --exclude="tags" -e'
+alias tags='ctags -R --exclude="*.js" . $(bundle list --paths)'
+alias supergrep='grep -rnw . --include=\*.rb --color=always -e'
 alias msync='script/msync.rb -d 2018_04_12_int_test_day3 &> "msync_$(date +"%Y-%m-%d_%H-%M-%S").log"'
+alias kd='killall Dock'
 export FZF_DEFAULT_COMMAND='fd --type f'
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-# brew install zsh-autosuggestions
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

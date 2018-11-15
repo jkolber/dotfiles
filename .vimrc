@@ -27,6 +27,7 @@ set mouse=a
 set noshowmode
 set notitle
 set number
+set re=1
 set rnu
 set ruler
 " set scrolloff=15
@@ -47,6 +48,7 @@ call plug#begin('~/.vim/plugged')
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'elixir-editors/vim-elixir'
 Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -163,6 +165,10 @@ if !has('gui_running')
   endif
 endif
 
+noremap <Leader>y ^"Ay$
+noremap <Leader>c :call setreg('a', [])<CR>
+noremap <Leader>v :let @+ = @a<CR>
+
 function! ToggleVerbose()
     if !&verbose
         set verbosefile=~/.log/vim/verbose.log
@@ -172,6 +178,8 @@ function! ToggleVerbose()
         set verbosefile=
     endif
 endfunction
+" Don't automatically continue comments after newline
+autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
 " Automagically reload vimrc on changes
 augroup myvimrchooks
